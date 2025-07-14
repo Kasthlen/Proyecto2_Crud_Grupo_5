@@ -1,3 +1,6 @@
+import logging
+logger = logging.getLogger('services')
+
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Service, ServiceCategory
@@ -7,6 +10,9 @@ class ServiceCategoryListCreate(generics.ListCreateAPIView):
     queryset = ServiceCategory.objects.all()
     serializer_class = ServiceCategorySerializer
     ordering = ['name']
+def get(self, request, *args, **kwargs):                 # ← NUEVA línea 13
+        logger.info("Se consultaron las categorías de servicio") # ← NUEVA línea 14
+        return super().get(request, *args, **kwargs)          # ← NUEVA línea 15
 
 class ServiceCategoryRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = ServiceCategory.objects.all()

@@ -74,11 +74,20 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'proyecto2_crud',
         'USER': 'postgres',
-        'PASSWORD': 'Dos2siete4',  # La que acabas de establecer
+        'PASSWORD': 'Dos2siete4',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+    'usuario_maribel': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'maribelgutierrezramirez',
+        'USER': 'maribel',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

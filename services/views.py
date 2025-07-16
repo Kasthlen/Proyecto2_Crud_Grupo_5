@@ -1,6 +1,7 @@
 import logging
 logger = logging.getLogger('services')
 
+from rest_framework.views import APIView
 from rest_framework import generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Service, ServiceCategory
@@ -34,3 +35,19 @@ class ServiceListCreate(generics.ListCreateAPIView):
 class ServiceRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+
+    from rest_framework.views import APIView
+from rest_framework.response import Response
+from .permissions import EsAdmin, EsEditor
+
+class VistaAdmin(APIView):
+    permission_classes = [EsAdmin]
+
+    def get(self, request):
+        return Response({"mensaje": "Hola admin! Solo tú puedes ver esto."})
+
+class VistaEditor(APIView):
+    permission_classes = [EsEditor]
+
+    def get(self, request):
+        return Response({"mensaje": "Hola editor! Tienes acceso especial."})
